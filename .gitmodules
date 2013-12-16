@@ -1,0 +1,9 @@
+[submodule "libbarobo"]
+	path = libbarobo
+	url = git@github.com:Barobo/libbarobo.git
+[submodule "BaroboLink"]
+	path = BaroboLink
+	url = git@github.com:Barobo/BaroboLink.git
+[submodule "libsfp"]
+	path = libsfp
+	url = git@github.com:Barobo/libsfp.git
