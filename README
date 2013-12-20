@@ -1,0 +1,62 @@
+This directory contains the Barobo robot communications software suite.
+It is organized into several submodules:
+
+  - BaroboLink : a user-level application to control Barobo robots
+
+  - libbarobo  : a robot communications library used by BaroboLink
+
+  - libsfp     : a reliable link-layer protocol library used by libbarobo
+
+
+Building
+--------
+
+The entire project may be built altogether, or each submodule may be built
+individually. Building the project altogether is easier, and will be
+described first.
+
+  Linux
+  -----
+
+  In the simplest case, you can configure, build out-of-source, and install
+  to /usr/local like so:
+
+    mkdir build && cd build
+    cmake ..
+    make
+    sudo make install
+    sudo ldconfig
+
+  You should be able to run BaroboLink and BaroboFirmwareUpdate now.
+  However, I do not recommend this, as /usr/local should be reserved for
+  software that installs a fairly stable set of files -- this software suite
+  is not one of them.
+
+  You can change the installation location with the -DCMAKE_INSTALL_PREFIX
+  option to CMake (analogous to autotools' --prefix option). It is also a
+  good idea to specify the build type (debug, release, etc.). These things
+  are accomplished like so:
+
+    mkdir stage build-debug && cd build-debug
+    cmake .. -DCMAKE_INSTALL_PREFIX=../stage -DCMAKE_BUILD_TYPE=debug
+    make && make install
+
+  Although that cmake command line is fairly uncomfortable, you should only
+  have to run it once.
+
+  Before you can run BaroboLink, you'll need to make sure your installation
+  location is in your path-related environment variables. The required ones
+  are LD_LIBRARY_PATH (for dynamic linking) and XDG_DATA_DIRS (for
+  BaroboLink's interface files). You may also wish to modify your PATH.
+  Assuming the absolute path of your installation prefix is in the STAGE
+  environment variable, you would execute these commands:
+
+    export PATH=$STAGE/bin:$PATH
+    export LD_LIBRARY_PATH=$STAGE/lib:$LD_LIBRARY_PATH
+    export XDG_DATA_DIRS=$STAGE/share:$XDG_DATA_DIRS
+    BaroboLink
+
+  You might want to put those export lines in your .bashrc.
+
+  It is not strictly necessary to install BaroboLink to run it, as long as
+  it can find its libraries and interface files in some way.
