@@ -1,0 +1,4 @@
+export STAGE=$PWD/stage
+export PATH=$STAGE/bin:$PATH
+export LD_LIBRARY_PATH=$STAGE/lib:$LD_LIBRARY_PATH
+export XDG_DATA_DIRS=$STAGE/share:$XDG_DATA_DIRS
