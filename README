@@ -19,7 +19,7 @@ described first.
   -----
 
   In the simplest case, you can configure, build out-of-source, and install
-  to /usr/local like so:
+  to /usr/local like so (but please read on before executing these commands):
 
     mkdir build && cd build
     cmake ..
@@ -56,7 +56,34 @@ described first.
     export XDG_DATA_DIRS=$STAGE/share:$XDG_DATA_DIRS
     BaroboLink
 
-  You might want to put those export lines in your .bashrc.
+  You might want to put those export lines in your .bashrc. Alternatively,
+  you can enter a separate shell set up for this development environment by
+  executing `bash --rcfile util/devenv.rc`.
 
   It is not strictly necessary to install BaroboLink to run it, as long as
   it can find its libraries and interface files in some way.
+
+
+  Win32 (MinGW)
+  -------------
+
+  Build instructions for MinGW are nearly identical to those for Linux, with
+  a few changed details. Follow the Linux instructions, but be aware:
+
+    - there is no LD_LIBRARY_PATH environment variable. Use PATH instead, or
+      make sure DLLs live in the same directory as the EXE which requires
+      them.
+
+    - there is no XDG_DATA_DIRS environment variable. BaroboLink will search
+      some hardcoded paths for its interface files -- see the source code.
+
+    - spaces in directory names are more common in Windows. Use quotes in
+      your command line arguments as necessary.
+
+
+  OS X
+  ----
+
+  Build instructions for OS X are nearly identical to those for Linux, with
+  the exception that there is no LD_LIBRARY_PATH. Use DYLD_FALLBACK_LIBRARY_PATH
+  instead.
