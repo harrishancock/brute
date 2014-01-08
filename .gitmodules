@@ -10,3 +10,6 @@
 [submodule "BaroboLabHack"]
 	path = BaroboLabHack
 	url = git@github.com:Barobo/BaroboLabHack.git
+[submodule "QtBaroboLink"]
+	path = QtBaroboLink
+	url = git@github.com:Barobo/QtBaroboLink.git
