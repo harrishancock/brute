@@ -1,7 +1,10 @@
 export STAGE=$PWD/stage
-export PATH=$STAGE/bin:$PATH
-export LIBRARY_PATH=$STAGE/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=$STAGE/lib:$LD_LIBRARY_PATH
+# The ${var:+:$var} syntax means: if var is not set or is null, use the null
+# string. Otherwise, use :$var. This prevents trailing colons from being added
+# if a path variable is empty.
+export PATH=$STAGE/bin${PATH:+:$PATH}
+export LIBRARY_PATH=$STAGE/lib${LIBRARY_PATH:+:$LIBRARY_PATH}
+export LD_LIBRARY_PATH=$STAGE/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 # For OS X
-export DYLD_FALLBACK_LIBRARY_PATH=$STAGE/lib:$DYLD_FALLBACK_LIBRARY_PATH
-export XDG_DATA_DIRS=$STAGE/share:$XDG_DATA_DIRS
+export DYLD_FALLBACK_LIBRARY_PATH=$STAGE/lib${DYLD_FALLBACK_LIBRARY_PATH:+:$DYLD_FALLBACK_LIBRARY_PATH}
+export XDG_DATA_DIRS=$STAGE/share${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}
